@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Directive, ElementRef, HostListener, Renderer2} from '@angular/core';
 // import { ChildComponent } from './child.component';
 
 const dateForInp = new Date();
@@ -20,11 +20,36 @@ export class AppComponent {
   title = 'angularToDo';
   name = 'name*from*app_comp';
   clicks = 0;
+  addNewRow() {
+    console.log('add New Row');
+  }
   onChanged(increased: any) {
     increased === true ? this.clicks++ : this.clicks--;
   }
 
 }
+//
+// @Directive({
+//   selector: '[appAdd]',
+//   @HostListener('click') onMouseClick() {
+//     this.setFontWeight('bold');
+//   }
+// })
+// export class AddDirective {
+//
+//   constructor(private element: ElementRef, private renderer: Renderer2) {
+//     this.renderer.setStyle(this.element.nativeElement, 'cursor', 'pointer');
+//   }
+//
+//   onMouseClick() {
+//     this.setFontWeight('bold');
+//   }
+//   private setFontWeight(val: string) {
+//     this.renderer.setStyle(this.element.nativeElement, 'font-weight', val);
+//   }
+// }
+
+
 
 function init() {
   if (!localStorage.getItem('todoStorage')) {
@@ -37,31 +62,31 @@ function init() {
 init();
 
 const rowExampl = document.querySelector('.row-list');  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! тут по ангуляровски
-let todoListArr = [];
+// let todoListArr = [];
 
 function loadDataFromStore() {
-  todoListArr = [];
-  todoListArr = JSON.parse(localStorage.getItem('todoStorage'));
-  if (todoListArr && todoListArr.length !== 0) {
-    fillTodoDisplay(todoListArr);
-  }
+  // todoListArr = [];
+  // todoListArr = JSON.parse(localStorage.getItem('todoStorage'));
+  // if (todoListArr && todoListArr.length !== 0) {
+  //   fillTodoDisplay(todoListArr);
+  // }
 }
 loadDataFromStore();
 
-function fillTodoDisplay( todoListArr ) { todoListArr.forEach( prop => fillRow(prop)) }
+// function fillTodoDisplay( todoListArr ) { todoListArr.forEach( prop => fillRow(prop)) }
 
-function fillRow(data) {
-
-  const newRow = rowExampl.cloneNode(true);
-  // newRow.classList.remove('hidden');
-  // newRow.setAttribute('data-id', data.id);
-  // newRow.setAttribute('data-ready', data.ready);
-
-  // if (data.ready) {
-  //   newRow.querySelector('.info-field').classList.add('ready-class');
-  // }
-  // newRow.querySelector('.text-line').innerHTML = data.text;
-  // newRow.querySelector('.date-line').innerHTML = data.deadLine;
-  // display.insertBefore(newRow , display.firstChild);
-
-}
+// function fillRow(data) {
+//
+//   const newRow = rowExampl.cloneNode(true);
+//   newRow.classList.remove('hidden');
+//   newRow.setAttribute('data-id', data.id);
+//   newRow.setAttribute('data-ready', data.ready);
+//
+//   if (data.ready) {
+//     newRow.querySelector('.info-field').classList.add('ready-class');
+//   }
+//   newRow.querySelector('.text-line').innerHTML = data.text;
+//   newRow.querySelector('.date-line').innerHTML = data.deadLine;
+//   display.insertBefore(newRow , display.firstChild);
+//
+// }

@@ -1,0 +1,110 @@
+.main-class{
+  background-color: #f3f1f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-title{
+  color: green;
+  text-decoration: underline;
+}
+
+.table-list{
+  border-top: 1px solid green;
+  margin-top: 10px;
+  padding-top: 20px;
+  min-width: 700px;
+}
+
+.todo-section{
+  background-color: #fff;
+  border: 1px solid #f3f1f1;
+  padding: 15px;
+  text-align: center;
+}
+
+.text-line{
+  padding: 2px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.text-line input{
+  min-width: 400px;
+}
+
+.date-line{
+  padding: 2px;
+  margin-right: 7px;
+}
+
+.inner-field{
+  padding: 3px 5px 2px;
+}
+
+.btn{
+  cursor: pointer;
+  padding: 3px 7px 4px;
+  margin-left: 10px;
+  border: 1px solid #f3f1f1;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px 1px orange;
+  height: 15px;
+}
+
+.btn:hover{
+  color: brown;
+  box-shadow: 1px 1px 1px 1px yellow;
+}
+
+.btn:active{
+  color: red;
+}
+
+.style-btn{
+  display: inline-block;
+}
+
+.style-btn:hover{
+  color: red;
+}
+
+.tab{
+  padding: 3px 17px 28px;
+  margin-left: 10px;
+  border: 0;
+  border: 1px solid grey;
+  border-bottom: 3px solid #fff;
+  box-shadow: none;
+  height: 15px;
+}
+
+.tab:hover{
+  box-shadow: none;
+}
+
+.filtr-area{
+  margin-top: 30px;
+}
+
+.row-list.hidden, .hidden{
+  display: none;
+}
+
+.ready-class{
+  color: #00bcd4;
+  text-decoration: line-through;
+}
+
+
+
+.title-yellow{
+  color: greenyellow;
+}
+
+
+
+
+
+

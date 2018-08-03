@@ -1,0 +1,33 @@
+<div class="row-list">
+
+  <div class="info-field">
+    <span class="date-line"> {{deadLine}} </span>
+    <span class="text-line"> {{taskText}} 	</span>
+  </div>
+
+  <div class="btn-panel">
+    <span class="edit-btn style-btn" title="edit"> </span>
+    <span  [ngStyle]="{'display':'none'}" class="save-btn style-btn " title="save"> </span>
+    <span class="remove-btn style-btn" title="remove"> </span>
+  </div>
+
+</div>
+
+<div class="row-list" data-id={{item.id}}  *ngFor="let item of todoListArr" >  <!--data-ready={{item.id}}-->
+
+  <div class="info-field">
+    <span class="date-line"> {{item.deadLine}} </span>
+    <span class="text-line"> {{item.text}}  	</span>
+  </div>
+
+  <div class="btn-panel">
+    <span class="edit-btn style-btn" title="edit"> </span>
+    <span  [ngStyle]="{'display':'none'}" class="save-btn style-btn " title="save"> </span>
+    <span class="remove-btn style-btn" title="remove"> </span>
+  </div>
+
+</div>
+
+<p>Возраст пользователя: {{userAge}}</p>
+<p>Name пользователя: {{userName}}</p>
+
