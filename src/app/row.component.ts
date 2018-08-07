@@ -1,4 +1,4 @@
-import { Input, Component, Directive, ElementRef, Renderer2} from '@angular/core';
+import {Input, Component, Directive, ElementRef, Renderer2, Output, EventEmitter} from '@angular/core';
 import {AppComponent} from './app.component';
 
 @Component({
@@ -8,22 +8,41 @@ import {AppComponent} from './app.component';
 })
 
 export class RowComponent {
-  todoListArr = JSON.parse(localStorage.getItem('todoStorage'));
-  @Input() taskText: string;
-  @Input() userName: string;
-  @Input() deadLine: any;
-
-  _userAge: number;
-
-  @Input()
-  set userAge(age: number) {
-    if (age < 0) {
-      this._userAge = 0;
-    } else if (age > 100) {
-      this._userAge = 100;
-    } else {
-      this._userAge = age;
-    }
+  @Input() task: any;
+    @Output () changedReady = new EventEmitter<boolean>();
+  changeReady(increased: any) {
+    this.changedReady.emit(increased);
   }
-  get userAge() { return this._userAge; }
+  @Output () removedItem = new EventEmitter<boolean>();  //  ?? что  тут  не так ??
+  removeItem(remove: any) {
+    this.removedItem.emit(remove);
+  }
+  @Output () edittItem = new EventEmitter<boolean>();  // todo read about  EventEmitter <boolean>
+  editItem(edit: any) {
+    this.edittItem.emit(edit);
+  }
 }
+
+
+
+//
+// let visibility = false;
+//
+// editItem(){
+//   visibility ? false : true;
+// }
+
+//
+/* _userAge: number;
+ @Input()
+ set userAge(age: number) {
+   if (age < 0) {
+     this._userAge = 0;
+   } else if (age > 100) {
+     this._userAge = 100;
+   } else {
+     this._userAge = age;
+   }
+ }
+ get userAge() { return this._userAge; }*/
+//

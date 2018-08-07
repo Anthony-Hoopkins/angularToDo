@@ -1,55 +1,11 @@
-import {Component, Directive, ElementRef, HostListener, Renderer2} from '@angular/core';
+import {Component, Directive, ElementRef, HostListener, Output, Renderer2} from '@angular/core';
 // import { ChildComponent } from './child.component';
+import { RowComponent } from './row.component';
 
 const dateForInp = new Date();
 const currentDate = `${dateForInp.getFullYear()}-${dateForInp.getMonth() + 1 < 10 ? '0' + (dateForInp.getMonth() + 1) :  dateForInp.getMonth() + 1}-${dateForInp.getDate() < 10 ? '0' + (dateForInp.getDate()) :  dateForInp.getDate()}`;
-
-@Component({
-  selector: 'app-root',
-  templateUrl: './html/app.component.html',
-  styleUrls: ['./app.component.css']
-})
-
-export class AppComponent {
-
-  myDate = new Date(1991, 3, 42);
-  taskText = '';
-  deadLine = currentDate;
-  nameU = 'Jim';
-  age = 24;
-  title = 'angularToDo';
-  name = 'name*from*app_comp';
-  clicks = 0;
-  addNewRow() {
-    console.log('add New Row');
-  }
-  onChanged(increased: any) {
-    increased === true ? this.clicks++ : this.clicks--;
-  }
-
-}
-//
-// @Directive({
-//   selector: '[appAdd]',
-//   @HostListener('click') onMouseClick() {
-//     this.setFontWeight('bold');
-//   }
-// })
-// export class AddDirective {
-//
-//   constructor(private element: ElementRef, private renderer: Renderer2) {
-//     this.renderer.setStyle(this.element.nativeElement, 'cursor', 'pointer');
-//   }
-//
-//   onMouseClick() {
-//     this.setFontWeight('bold');
-//   }
-//   private setFontWeight(val: string) {
-//     this.renderer.setStyle(this.element.nativeElement, 'font-weight', val);
-//   }
-// }
-
-
+let todoListArr = [];
+todoListArr = JSON.parse(localStorage.getItem('todoStorage'));
 
 function init() {
   if (!localStorage.getItem('todoStorage')) {
@@ -61,17 +17,80 @@ function init() {
 }
 init();
 
-const rowExampl = document.querySelector('.row-list');  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! тут по ангуляровски
-// let todoListArr = [];
+@Component({
+  selector: 'app-root',
+  templateUrl: './html/app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  @Output() ready: any;
+  title = 'angularToDo';
+  clicks = 0;
+  //
+  //
+  taskText = '';
+  deadLine = currentDate;
+  todoListArr = todoListArr;
+  addNewRow() {
+    if (this.taskText && this.taskText.trim() !== ''  && this.deadLine !== '') {
+      todoListArr.unshift({id: +new Date(), ready: false, text: this.taskText, deadLine: this.deadLine});
+      localStorage.setItem('todoStorage', JSON.stringify(this.todoListArr));
+      this.taskText = '';
+    }
+  }
+  addFromEnter(e) {
+    if (e.keyCode === 13) {
+      this.addNewRow();  // addBtn.dispatchEvent(new Event('click'));
+    }
+  }
+  onChanged(increased: any) {
+    increased === true ? this.clicks++ : this.clicks--;
+  }
+  // changedReady(ready: any) {
+  changedReady(e) {
+    todoListArr.forEach( (prop, i) => {
+      if (prop.id === +e.target.closest('.row-list').id) {
+        todoListArr[i]['ready'] = !todoListArr[i]['ready'] ? true : false; // Что тут не так,,,,????!!!!
+        localStorage.setItem('todoStorage', JSON.stringify(todoListArr));
+      }
+    });
+  }
+  removedItem(e) {
+    todoListArr.forEach( (prop, i) => {
+      if (prop.id === +e.target.closest('.row-list').id) {
+        todoListArr.splice(i, 1);
+        localStorage.setItem('todoStorage', JSON.stringify(this.todoListArr));
+      }
+    });
+  }
+  edittItem(e) {
+    todoListArr.forEach( (prop, i) => {
+      if (prop.id === +e.target.closest('.row-list').id) {
 
-function loadDataFromStore() {
-  // todoListArr = [];
-  // todoListArr = JSON.parse(localStorage.getItem('todoStorage'));
-  // if (todoListArr && todoListArr.length !== 0) {
-  //   fillTodoDisplay(todoListArr);
-  // }
+        // localStorage.setItem('todoStorage', JSON.stringify(this.todoListArr));
+      }
+    });
+    console.log('edit rullezzz');
+    // console.log(e);
+    // console.log(e.target.closest('.table-list'));
+    // console.log(e.target.closest('app-row-component').childElementCount);
+    // const nodes = [].slice.call( e.target.closest('.table-list').children );  //  Array.prototype
+    // console.log(nodes);
+
+  }
 }
-loadDataFromStore();
+
+
+
+
+
+// const rowSelect = todoListArr[i];
+// rowSelect.ready = rowSelect.ready ? false : true;
+// todoListArr.splice(i, 1, rowSelect);
+
+
+//   }
+
 
 // function fillTodoDisplay( todoListArr ) { todoListArr.forEach( prop => fillRow(prop)) }
 

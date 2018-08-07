@@ -7,5 +7,5 @@ import { Component} from '@angular/core';
             </ul>`
 })
 export class ForExamplComponent {
-  items = [/*'Apple iPhone 7'*//*, 'Huawei Mate 9', 'Samsung Galaxy S7', 'Motorola Moto Z', 'Nokia 3220'*/];
+  items = ['Apple iPhone 7', 'Huawei Mate 9', 'Samsung Galaxy S7', 'Motorola Moto Z', 'Nokia 3220'];
 }

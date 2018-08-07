@@ -97,7 +97,9 @@
   text-decoration: line-through;
 }
 
-
+.row-item:nth-child(odd){
+  background-color: #f7ede1;
+}
 
 .title-yellow{
   color: greenyellow;

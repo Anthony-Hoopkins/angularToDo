@@ -20,10 +20,9 @@
   padding: 5px;
 }
 
-.row-list:nth-child(odd){
-  background-color: #f7ede1;
-}
-
+/*.row-list:nth-child(odd){*/
+  /*background-color: #f7ede1;*/
+/*}*/
 
 .row-list .edit-btn{
   background-position: 288px 976px;
@@ -71,4 +70,9 @@
 
 .row-list:nth-child(odd) .save-btn:hover{
   background-position: 247px 111px;
+}
+
+.readyClass{
+  color: #00bcd4;
+  text-decoration: line-through;
 }

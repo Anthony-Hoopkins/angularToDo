@@ -1,48 +1,41 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h4>
-    {{myDate | date}}   Welcome to {{ title }}!
-  </h4>
-
-</div>
-
 <main class="main-class">
 
   <section id="todo-section" class="todo-section">
 
     <h1 class="main-title"> The {{ title }} List </h1>
 
-    <app-childd-comp> <h2 class="title-yellow">Добро пожаловать {{name}}! inside from app-component </h2> </app-childd-comp>
-
-    <br>
-
-    <app-ng-ng></app-ng-ng>
-
     <br>
 
     <div>
-      <input [(ngModel)]="taskText" id="inner-field" placeholder="New task" class="inner-field" type="textarea" name="text-input">
+      <input [(ngModel)]="taskText" (keypress)="addFromEnter($event)" id="inner-field" placeholder="New task" class="inner-field" type="textarea" name="text-input">
       <input [(ngModel)]="deadLine" id="date-line" class="date-field" type="date" name="date-input" >
-      <span appAdd  (click)="addNewRow($event)" class="add-btn btn"> + Add</span>
+      <span (click)="addNewRow($event)"  id="addBtn" class="add-btn btn"> + Add</span>
     </div>
 
-    <div class="filtr-area">
-      <input id="filtr-btn-checkbox" class="filtr-btn-checkbox hidden" type="checkbox" name="">
-      <label for="filtr-btn-checkbox"> <span class="filtr-btn btn"> Filter </span>  </label>
-      <span id="clear-basket-btn" class="clear-basket-btn btn hidden"> Clear All History </span>
-      <span id="basket-btn" class="basket-btn btn"> History </span>
-    </div>
+    <!--<div class="filtr-area">-->
+      <!--<input id="filtr-btn-checkbox" class="filtr-btn-checkbox hidden" type="checkbox" name="">-->
+      <!--<label for="filtr-btn-checkbox"> <span class="filtr-btn btn"> Filter </span>  </label>-->
+      <!--<span id="clear-basket-btn" class="clear-basket-btn btn hidden"> Clear All History </span>-->
+      <!--<span id="basket-btn" class="basket-btn btn"> History </span>-->
+    <!--</div>-->
 
     <br>
 
     <div id="table-list" class="table-list">
 
-      <app-row-component [taskText]="taskText" [deadLine]="deadLine" [userName]="nameU" [userAge]="age"></app-row-component>
-
-      <input type="text" [(ngModel)]="nameU" />
-      <input type="number" [(ngModel)]="age" />
+      <app-row-component class="row-item" (edittItem)="edittItem($event)" (changedReady)="changedReady($event)" (removedItem)="removedItem($event)" *ngFor="let task of todoListArr" [task]="task" ></app-row-component>
 
     </div>
+
+    <ng-container *ngIf="OldMessages">
+      <div *ngFor="let oldm of MyOldMessages;let i of MyOldMessages.length">
+      </div>
+    </ng-container>
+    <ng-container *ngIf="NewMessages">
+      <div *ngFor="let message of MyNewMessages;let i of MyNewMessages.length">
+      </div>
+    </ng-container>
 
     <br>
 
@@ -51,10 +44,17 @@
 
     <app-if-exampl></app-if-exampl>
     <br>
-    <app-for-exampl></app-for-exampl>
 
   </section>
 
-
-
 </main>
+
+
+      <!--[taskText]="taskText" [deadLine]="deadLine" [userName]="nameU" [userAge]="age"-->
+    <!--<input type="text" [(ngModel)]="nameU" />-->
+    <!--<input type="number" [(ngModel)]="age" />-->
+
+<!--<app-childd-comp> <h2 class="title-yellow">Добро пожаловать {{name}}! inside from app-component </h2> </app-childd-comp>-->
+<!--<app-for-exampl></app-for-exampl>-->
+
+<!--    <app-ng-ng></app-ng-ng>-->

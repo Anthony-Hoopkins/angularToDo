@@ -1,33 +1,25 @@
-<div class="row-list">
+<div class="row-list"  [ngClass]="{readyClass:task.ready}" data-id={{task.id}}>  <!--data-ready={{item.ready}}  -->  <!-- !!!!!!!!!!!!!!!!!! ошибка на добавление атрибута  -->
 
-  <div class="info-field">
-    <span class="date-line"> {{deadLine}} </span>
-    <span class="text-line"> {{taskText}} 	</span>
+  <div class="info-field" (click)="changeReady($event)">
+    <span [ngStyle]="{'display':'inline'}" class="date-line"> {{task.deadLine}} </span>
+    <input [ngStyle]="{'display':'none'}" type="date">
+    <span [ngStyle]="{'display':'inline'}" class="text-line"> {{task.text}}  	</span>
+    <input [ngStyle]="{'display':'none'}" type="text" class="inner-field">
   </div>
 
   <div class="btn-panel">
-    <span class="edit-btn style-btn" title="edit"> </span>
-    <span  [ngStyle]="{'display':'none'}" class="save-btn style-btn " title="save"> </span>
-    <span class="remove-btn style-btn" title="remove"> </span>
+    <!--<span [ngStyle]="{'display':'inline'}" class="edit-btn style-btn" title="edit" (click)="editItem($event)"> </span>-->
+    <span [ngStyle]="{'display':'none'}" class="save-btn style-btn " title="save"> </span>
+    <span class="remove-btn style-btn" title="remove" (click)="removeItem($event)"> </span>
   </div>
 
 </div>
 
-<div class="row-list" data-id={{item.id}}  *ngFor="let item of todoListArr" >  <!--data-ready={{item.id}}-->
 
-  <div class="info-field">
-    <span class="date-line"> {{item.deadLine}} </span>
-    <span class="text-line"> {{item.text}}  	</span>
-  </div>
-
-  <div class="btn-panel">
-    <span class="edit-btn style-btn" title="edit"> </span>
-    <span  [ngStyle]="{'display':'none'}" class="save-btn style-btn " title="save"> </span>
-    <span class="remove-btn style-btn" title="remove"> </span>
-  </div>
-
-</div>
+<!--
 
 <p>Возраст пользователя: {{userAge}}</p>
 <p>Name пользователя: {{userName}}</p>
+
+-->
 
