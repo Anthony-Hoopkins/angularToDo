@@ -1,0 +1,31 @@
+<main class="main-class">
+
+  <section id="todo-section" class="todo-section">
+
+    <h1 class="main-title"> The {{ title }} List </h1>
+
+    <br>
+
+    <div>
+      <input [(ngModel)]="taskText" (keypress)="addFromEnter($event)" id="inner-field" placeholder="New task" class="inner-field" type="textarea" name="text-input">
+      <input [(ngModel)]="deadLine" id="date-line" class="date-field" type="date" name="date-input" >
+      <span (click)="addNewRow($event)"  id="addBtn" class="add-btn btn"> + Add</span>
+    </div>
+
+    <br>
+
+    <div id="table-list" class="table-list">
+
+      <app-row-component  class="row-list"  [ngClass]="{readyClass:task.ready}"   (saveEditt)="saveEditt()" (changedReady)="changedReady(index)" (removedItem)="removedItem($event)"
+                         *ngFor="let task of todoListArr; let index = index"  [task]="task" [index]="index"> loading ...
+      </app-row-component>
+
+    </div>
+
+    <br>
+
+  </section>
+
+</main>
+
+

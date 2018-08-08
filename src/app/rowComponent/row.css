@@ -6,6 +6,11 @@
   width: 300px;
 }
 
+.text-line{
+  cursor: pointer;
+  padding-left: 12px;
+}
+
 .btn-panel .style-btn{
   cursor: pointer;
   padding: 3px 15px 4px;
@@ -14,73 +19,50 @@
   background: url('/src/img/Full_sprite.png');
 }
 
-.text-line{
-  cursor: pointer;
-  padding-left: 12px;
-}
-
-.row-list{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height:  30px;
-  padding: 5px;
-}
-
-/*.row-list:nth-child(odd){*/
-.row-list:first-child{
-  background-color: #f7ede1;
-}
-
-.row-list .edit-btn{
+.btn-panel .edit-btn{
   background-position: 288px 976px;
 }
 
-.row-list .edit-btn:hover{
+.btn-panel .edit-btn:hover{
   background-position: 288px 708px;
 }
 
-.row-list:nth-child(odd) .edit-btn{
+.btn-panel:nth-child(odd) .edit-btn{
   background-position: 288px 437px;
 }
 
-.row-list:nth-child(odd) .edit-btn:hover{
+.btn-panel:nth-child(odd) .edit-btn:hover{
   background-position: 288px 156px;
 }
 
-.row-list .remove-btn{
+.btn-panel .remove-btn{
   background-position: 122px 976px;
 }
 
-.row-list .remove-btn:hover{
+.btn-panel .remove-btn:hover{
   background-position: 122px 708px;
 }
 
-.row-list:nth-child(odd) .remove-btn{
+.btn-panel:nth-child(odd) .remove-btn{
   background-position: 122px 437px;
 }
 
-.row-list:nth-child(odd) .remove-btn:hover{
+.btn-panel:nth-child(odd) .remove-btn:hover{
   background-position: 122px 156px;
 }
 
-.row-list .save-btn{
+.btn-panel .save-btn{
   background-position: 247px 931px;
 }
 
-.row-list .save-btn:hover{
+.btn-panel .save-btn:hover{
   background-position: 247px 663px;
 }
 
-.row-list:nth-child(odd) .save-btn{
+.btn-panel:nth-child(odd) .save-btn{
   background-position: 247px 392px;
 }
 
-.row-list:nth-child(odd) .save-btn:hover{
+.btn-panel:nth-child(odd) .save-btn:hover{
   background-position: 247px 111px;
-}
-
-.readyClass{
-  color: #00bcd4;
-  text-decoration: line-through;
 }

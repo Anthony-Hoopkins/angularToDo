@@ -102,12 +102,20 @@
   color: greenyellow;
 }
 
+.row-list{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height:  30px;
+  padding: 5px;
+}
 
-/*.row-item:nth-child(odd){*/
-  /*background-color: #f7ede1;*/
-/*}*/
+.row-list:nth-child(odd) {
+  background-color: #f7ede1;
+}
 
-
-
-
+.readyClass{
+  color: #00bcd4;
+  text-decoration: line-through;
+}
 
