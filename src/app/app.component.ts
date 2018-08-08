@@ -1,6 +1,4 @@
 import {Component, Directive, ElementRef, HostListener, Output, Renderer2} from '@angular/core';
-// import { ChildComponent } from './child.component';
-import { RowComponent } from './row.component';
 
 const dateForInp = new Date();
 const currentDate = `${dateForInp.getFullYear()}-${dateForInp.getMonth() + 1 < 10 ? '0' + (dateForInp.getMonth() + 1) :  dateForInp.getMonth() + 1}-${dateForInp.getDate() < 10 ? '0' + (dateForInp.getDate()) :  dateForInp.getDate()}`;
@@ -63,25 +61,29 @@ export class AppComponent {
       }
     });
   }
-  edittItem(e) {
-    todoListArr.forEach( (prop, i) => {
-      if (prop.id === +e.target.closest('.row-list').id) {
-
-        // localStorage.setItem('todoStorage', JSON.stringify(this.todoListArr));
-      }
-    });
-    console.log('edit rullezzz');
-    // console.log(e);
-    // console.log(e.target.closest('.table-list'));
-    // console.log(e.target.closest('app-row-component').childElementCount);
-    // const nodes = [].slice.call( e.target.closest('.table-list').children );  //  Array.prototype
-    // console.log(nodes);
-
+  saveEditt(e) {
+    localStorage.setItem('todoStorage', JSON.stringify(todoListArr));
   }
 }
 
 
 
+
+// import { ChildComponent } from './child.component';
+import { RowComponent } from './row.component';
+
+    // todoListArr.forEach( (prop, i) => {
+    //   if (prop.id === +e.target.closest('.row-list').id) {
+    //   }
+    // });
+
+
+
+
+
+
+  // const nodes = [].slice.call( e.target.closest('.table-list').children );  //  Array.prototype
+    // console.log(nodes);
 
 
 // const rowSelect = todoListArr[i];

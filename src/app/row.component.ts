@@ -9,7 +9,10 @@ import {AppComponent} from './app.component';
 
 export class RowComponent {
   @Input() task: any;
-    @Output () changedReady = new EventEmitter<boolean>();
+  // @Input() newText: string;
+  // @Input() newDate: number;
+  visibility = false;
+  @Output () changedReady = new EventEmitter<boolean>();
   changeReady(increased: any) {
     this.changedReady.emit(increased);
   }
@@ -17,9 +20,28 @@ export class RowComponent {
   removeItem(remove: any) {
     this.removedItem.emit(remove);
   }
-  @Output () edittItem = new EventEmitter<boolean>();  // todo read about  EventEmitter <boolean>
-  editItem(edit: any) {
-    this.edittItem.emit(edit);
+  @Output () saveEditt = new EventEmitter<boolean>();  // todo read about  EventEmitter <boolean>
+  saveEdit(edit: any) {
+    this.saveEditt.emit(edit);
+  }
+  showInput() {
+    console.log('show input');
+  }
+  addFromEnter(e) {
+    if (e.keyCode === 13) {
+      this.validation();
+      this.saveEdit(e);
+    } else if (e.keyCode === 27) {
+      this.validation();
+    }
+  }
+  validation() {
+    if (this.task.text && this.task.text.trim() !== ''  && this.task.deadLine !== '') {
+      this.toggle();
+    }
+  }
+  toggle() {
+    this.visibility = !this.visibility;
   }
 }
 

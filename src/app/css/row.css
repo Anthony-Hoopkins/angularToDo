@@ -1,3 +1,10 @@
+.invisible{display:none;}
+
+.inner-field{
+  padding: 3px 5px 2px;
+  margin-left: 10px;
+  width: 300px;
+}
 
 .btn-panel .style-btn{
   cursor: pointer;
@@ -21,8 +28,9 @@
 }
 
 /*.row-list:nth-child(odd){*/
-  /*background-color: #f7ede1;*/
-/*}*/
+.row-list:first-child{
+  background-color: #f7ede1;
+}
 
 .row-list .edit-btn{
   background-position: 288px 976px;

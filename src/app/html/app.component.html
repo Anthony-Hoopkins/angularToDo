@@ -13,41 +13,42 @@
       <span (click)="addNewRow($event)"  id="addBtn" class="add-btn btn"> + Add</span>
     </div>
 
-    <!--<div class="filtr-area">-->
-      <!--<input id="filtr-btn-checkbox" class="filtr-btn-checkbox hidden" type="checkbox" name="">-->
-      <!--<label for="filtr-btn-checkbox"> <span class="filtr-btn btn"> Filter </span>  </label>-->
-      <!--<span id="clear-basket-btn" class="clear-basket-btn btn hidden"> Clear All History </span>-->
-      <!--<span id="basket-btn" class="basket-btn btn"> History </span>-->
-    <!--</div>-->
-
     <br>
 
     <div id="table-list" class="table-list">
 
-      <app-row-component class="row-item" (edittItem)="edittItem($event)" (changedReady)="changedReady($event)" (removedItem)="removedItem($event)" *ngFor="let task of todoListArr" [task]="task" ></app-row-component>
+      <app-row-component class="row-item" (saveEditt)="saveEditt($event)" (changedReady)="changedReady($event)" (removedItem)="removedItem($event)" *ngFor="let task of todoListArr" [task]="task" > loading... </app-row-component>
 
     </div>
 
-    <ng-container *ngIf="OldMessages">
-      <div *ngFor="let oldm of MyOldMessages;let i of MyOldMessages.length">
-      </div>
-    </ng-container>
-    <ng-container *ngIf="NewMessages">
-      <div *ngFor="let message of MyNewMessages;let i of MyNewMessages.length">
-      </div>
-    </ng-container>
-
-    <br>
-
-    <h2>Количество кликов: {{clicks}}</h2>
-    <app-count-comp (onChanged)="onChanged($event)"></app-count-comp>
-
-    <app-if-exampl></app-if-exampl>
     <br>
 
   </section>
 
 </main>
+
+
+<!--<h2>Количество кликов: {{clicks}}</h2>-->
+<!--<app-count-comp (onChanged)="onChanged($event)"></app-count-comp>-->
+
+<!--<app-if-exampl></app-if-exampl>-->
+<!--<br>
+
+<!--<ng-container *ngIf="OldMessages">-->
+<!--<div *ngFor="let oldm of MyOldMessages;let i of MyOldMessages.length">-->
+<!--</div>-->
+<!--</ng-container>-->
+<!--<ng-container *ngIf="NewMessages">-->
+<!--<div *ngFor="let message of MyNewMessages;let i of MyNewMessages.length">-->
+<!--</div>-->
+<!--</ng-container>-->
+<!--<div class="filtr-area">-->
+<!--<input id="filtr-btn-checkbox" class="filtr-btn-checkbox hidden" type="checkbox" name="">-->
+<!--<label for="filtr-btn-checkbox"> <span class="filtr-btn btn"> Filter </span>  </label>-->
+<!--<span id="clear-basket-btn" class="clear-basket-btn btn hidden"> Clear All History </span>-->
+<!--<span id="basket-btn" class="basket-btn btn"> History </span>-->
+<!--</div>-->
+
 
 
       <!--[taskText]="taskText" [deadLine]="deadLine" [userName]="nameU" [userAge]="age"-->

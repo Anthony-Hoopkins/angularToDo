@@ -41,6 +41,7 @@
 
 .inner-field{
   padding: 3px 5px 2px;
+  margin: 0 10px;
 }
 
 .btn{
@@ -97,14 +98,14 @@
   text-decoration: line-through;
 }
 
-.row-item:nth-child(odd){
-  background-color: #f7ede1;
-}
-
 .title-yellow{
   color: greenyellow;
 }
 
+
+/*.row-item:nth-child(odd){*/
+  /*background-color: #f7ede1;*/
+/*}*/
 
 
 
