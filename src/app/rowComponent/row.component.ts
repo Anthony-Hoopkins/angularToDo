@@ -2,6 +2,7 @@ import {Input, Component, Directive, ElementRef, Renderer2, Output, EventEmitter
 import index from '@angular/cli/lib/cli';
 
 @Component({
+  // moduleId: module.id;
   selector: 'app-row-component',
   templateUrl: `./row.component.html`,
   styleUrls: [`./row.css`]
@@ -27,10 +28,11 @@ export class RowComponent {
       this.validation();
   }
   validation() {
-    if (this.task.text && this.task.text.trim() !== ''  && this.task.deadLine !== '') {
+    if (!this.task.text || this.task.text.trim() === ''  ||  this.task.deadLine === '') {
+      return;
+    }
       this.saveEdit();
       this.toggle();
-    }
   }
   toggle() {
     this.visibility = !this.visibility;

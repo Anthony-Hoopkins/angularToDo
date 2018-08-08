@@ -11,7 +11,7 @@ const todoStorage = 'todoStorage';
 })
 export class AppComponent {
   title: string = 'angularToDo';
-  todoListArr: Array = JSON.parse(localStorage.getItem(todoStorage)) || [];
+  todoListArr: any[] = JSON.parse(localStorage.getItem(todoStorage)) || [];
   taskText = '';
   deadLine = currentDate;
   addNewRow() {
@@ -25,11 +25,11 @@ export class AppComponent {
   addFromEnter() {
      this.addNewRow();
   }
-  changedReady(index) {
+  changedReady(index: number) {
     this.todoListArr[index]['ready'] = !this.todoListArr[index]['ready'];
     localStorage.setItem(todoStorage, JSON.stringify(this.todoListArr));
   }
-  removedItem(index) {
+  removedItem(index: number) {
     this.todoListArr.splice(index, 1);
     localStorage.setItem(todoStorage, JSON.stringify(this.todoListArr));
   }
