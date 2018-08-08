@@ -1,12 +1,15 @@
-  <div class="info-field" (click)="changeReady($event)" (dblclick)="toggle()">
+  <div class="info-field" (dblclick)="toggle()">
     <span [ngClass]="{invisible: visibility}" class="date-line"> {{task.deadLine | date}} </span>
-    <input (keypress)="addFromEnter($event)" [ngClass]="{invisible: !visibility}" type="date" [(ngModel)]="task.deadLine">
-    <span [ngClass]="{invisible: visibility}" class="text-line"> {{task.text}}  	</span>
-    <input (keypress)="addFromEnter($event)" [ngClass]="{invisible: !visibility}" type="text" class="inner-field" [(ngModel)]="task.text" >
+    <input  (keydown.enter)="addFromEnter()" [ngClass]="{invisible: !visibility}" type="date" [(ngModel)]="task.deadLine">
+    <span (click)="changeReady($event)" [ngClass]="{invisible: visibility}" class="text-line"> {{task.text}}  	</span>
+    <input   (keydown.enter)="addFromEnter()" [ngClass]="{invisible: !visibility}" type="text" class="inner-field" [(ngModel)]="task.text" >
   </div>
 
   <div class="btn-panel">
     <span [ngClass]="{invisible: visibility}" (click)="toggle()"  class="edit-btn style-btn" title="edit" > </span>
-    <span [ngClass]="{invisible: !visibility}" (click)="toggle(); saveEdit($event)" class="save-btn style-btn " title="save"> </span>
+    <span [ngClass]="{invisible: !visibility}" (click)="validation()" class="save-btn style-btn " title="save"> </span>
     <span (click)="removeItem(index)" class="remove-btn style-btn" title="remove"> </span>
   </div>
+
+
+
