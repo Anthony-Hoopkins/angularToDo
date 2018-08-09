@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {ItemRow} from './rowComponent/ItemRow';
 
 const dateForInp = new Date();
 const currentDate = `${dateForInp.getFullYear()}-${dateForInp.getMonth() + 1 < 10 ? '0' + (dateForInp.getMonth() + 1) :  dateForInp.getMonth() + 1}-${dateForInp.getDate() < 10 ? '0' + (dateForInp.getDate()) :  dateForInp.getDate()}`;
@@ -11,7 +12,7 @@ const todoStorage = 'todoStorage';
 })
 export class AppComponent {
   title = 'angularToDo';
-  todoListArr: any[] = JSON.parse(localStorage.getItem(todoStorage)) || [];
+  todoListArr: ItemRow[] = JSON.parse(localStorage.getItem(todoStorage)) || [];
   taskText = '';
   deadLine = currentDate;
   addNewRow() {
@@ -19,6 +20,7 @@ export class AppComponent {
       return;
     }
       this.todoListArr.unshift({text: this.taskText, ready: false,  deadLine: this.deadLine});
+    console.log(typeof this.deadLine);
       localStorage.setItem(todoStorage, JSON.stringify(this.todoListArr));
       this.taskText = '';
   }

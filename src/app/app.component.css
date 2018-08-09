@@ -40,8 +40,18 @@
 }
 
 .inner-field{
-  padding: 3px 5px 2px;
+  box-sizing: border-box;
+  height: 27px;
+  padding: 3px 5px;
   margin: 0 10px;
+  font-size: 14px;
+}
+
+.date-field{
+  box-sizing: border-box;
+  height: 27px;
+  padding: 1px 5px;
+  font-size: 14px;
 }
 
 .btn{
