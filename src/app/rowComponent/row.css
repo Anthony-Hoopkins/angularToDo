@@ -11,7 +11,7 @@
   padding-left: 12px;
 }
 
-.btn-panel .style-btn{
+:host .style-btn{
   cursor: pointer;
   padding: 3px 15px 4px;
   height: 15px;
@@ -19,50 +19,50 @@
   background: url('/src/img/Full_sprite.png');
 }
 
-.btn-panel .edit-btn{
+:host .edit-btn{
   background-position: 288px 976px;
 }
 
-.btn-panel .edit-btn:hover{
+:host .edit-btn:hover{
   background-position: 288px 708px;
 }
 
-.btn-panel:nth-child(odd) .edit-btn{
+:host:nth-child(odd) .edit-btn{
   background-position: 288px 437px;
 }
 
-.btn-panel:nth-child(odd) .edit-btn:hover{
+:host:nth-child(odd) .edit-btn:hover{
   background-position: 288px 156px;
 }
 
-.btn-panel .remove-btn{
+:host .remove-btn{
   background-position: 122px 976px;
 }
 
-.btn-panel .remove-btn:hover{
+:host .remove-btn:hover{
   background-position: 122px 708px;
 }
 
-.btn-panel:nth-child(odd) .remove-btn{
+:host:nth-child(odd) .remove-btn{
   background-position: 122px 437px;
 }
 
-.btn-panel:nth-child(odd) .remove-btn:hover{
+:host:nth-child(odd) .remove-btn:hover{
   background-position: 122px 156px;
 }
 
-.btn-panel .save-btn{
+:host .save-btn{
   background-position: 247px 931px;
 }
 
-.btn-panel .save-btn:hover{
+:host .save-btn:hover{
   background-position: 247px 663px;
 }
 
-.btn-panel:nth-child(odd) .save-btn{
+:host:nth-child(odd) .save-btn{
   background-position: 247px 392px;
 }
 
-.btn-panel:nth-child(odd) .save-btn:hover{
+:host:nth-child(odd) .save-btn:hover{
   background-position: 247px 111px;
 }

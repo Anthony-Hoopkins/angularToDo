@@ -16,7 +16,7 @@
 
     <div id="table-list" class="table-list">
 
-      <app-row-component  class="row-list"  [ngClass]="{readyClass:task.ready}"   (saveEditt)="saveEditt()" (changedReady)="changedReady(index)" (removedItem)="removedItem($event)"
+      <app-row-component  class="row-list"  [ngClass]="{readyClass:task.ready}"   (onSaveEdit)="onSaveEdit()" (onChangeReady)="onChangeReady(index)" (onRemoveItem)="onRemoveItem($event)"
                          *ngFor="let task of todoListArr; let index = index"  [task]="task" [index]="index"> loading ...
       </app-row-component>
 
@@ -27,5 +27,3 @@
   </section>
 
 </main>
-
-

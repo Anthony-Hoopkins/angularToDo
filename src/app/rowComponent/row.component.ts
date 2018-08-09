@@ -1,8 +1,6 @@
-import {Input, Component, Directive, ElementRef, Renderer2, Output, EventEmitter} from '@angular/core';
-import index from '@angular/cli/lib/cli';
+import {Input, Component, Output, EventEmitter} from '@angular/core';
 
 @Component({
-  // moduleId: module.id;
   selector: 'app-row-component',
   templateUrl: `./row.component.html`,
   styleUrls: [`./row.css`]
@@ -12,29 +10,29 @@ export class RowComponent {
   @Input() index: number;
 
   visibility = false;
-  @Output () changedReady = new EventEmitter<boolean>();
-  changeReady(change: any) {
-    this.changedReady.emit(change);
+  @Output () onChangeReady = new EventEmitter<number>();
+  changeReady() {
+    this.onChangeReady.emit(this.index);
   }
-  @Output () removedItem = new EventEmitter<number>();  //  ?? что  тут  не так ??
-  removeItem(remove: number) {
-    this.removedItem.emit(remove);
+  @Output () onRemoveItem = new EventEmitter<number>();
+  removeItem() {
+    this.onRemoveItem.emit(this.index);
   }
-  @Output () saveEditt = new EventEmitter<boolean>();  // todo read about  EventEmitter <boolean>
+  @Output () onSaveEdit = new EventEmitter<void>();
   saveEdit() {
-    this.saveEditt.emit();
+    this.onSaveEdit.emit();
   }
   addFromEnter() {
-      this.validation();
+      this.validationAndSave();
   }
-  validation() {
+  validationAndSave() {
     if (!this.task.text || this.task.text.trim() === ''  ||  this.task.deadLine === '') {
       return;
     }
       this.saveEdit();
-      this.toggle();
+      this.toggleVisibility();
   }
-  toggle() {
+  toggleVisibility() {
     this.visibility = !this.visibility;
   }
 }

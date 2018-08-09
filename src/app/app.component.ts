@@ -1,4 +1,4 @@
-import {Component, Directive, ElementRef, HostListener, Output, Renderer2} from '@angular/core';
+import {Component} from '@angular/core';
 
 const dateForInp = new Date();
 const currentDate = `${dateForInp.getFullYear()}-${dateForInp.getMonth() + 1 < 10 ? '0' + (dateForInp.getMonth() + 1) :  dateForInp.getMonth() + 1}-${dateForInp.getDate() < 10 ? '0' + (dateForInp.getDate()) :  dateForInp.getDate()}`;
@@ -10,7 +10,7 @@ const todoStorage = 'todoStorage';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title: string = 'angularToDo';
+  title = 'angularToDo';
   todoListArr: any[] = JSON.parse(localStorage.getItem(todoStorage)) || [];
   taskText = '';
   deadLine = currentDate;
@@ -25,15 +25,15 @@ export class AppComponent {
   addFromEnter() {
      this.addNewRow();
   }
-  changedReady(index: number) {
-    this.todoListArr[index]['ready'] = !this.todoListArr[index]['ready'];
+  onChangeReady(index: number) {
+    this.todoListArr[index].ready = !this.todoListArr[index].ready;
     localStorage.setItem(todoStorage, JSON.stringify(this.todoListArr));
   }
-  removedItem(index: number) {
+  onRemoveItem(index: number) {
     this.todoListArr.splice(index, 1);
     localStorage.setItem(todoStorage, JSON.stringify(this.todoListArr));
   }
-  saveEditt() {
+  onSaveEdit() {
     localStorage.setItem(todoStorage, JSON.stringify(this.todoListArr));
   }
 }
