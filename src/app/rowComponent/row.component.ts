@@ -1,5 +1,5 @@
 import {Input, Component, Output, EventEmitter} from '@angular/core';
-import {ItemRow} from './ItemRow';
+import {ToDoItem} from '../ToDoItem';
 
 @Component({
   selector: 'app-row-component',
@@ -7,7 +7,7 @@ import {ItemRow} from './ItemRow';
   styleUrls: [`./row.css`]
 })
 export class RowComponent {
-  @Input() task: ItemRow;
+  @Input() task: ToDoItem;
   @Input() index: number;
 
   visibility = false;

@@ -1,4 +1,4 @@
-export interface ItemRow {
+export interface ToDoItem {
   text: string;
   ready: boolean;
   deadLine: string;
