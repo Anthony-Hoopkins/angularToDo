@@ -52,6 +52,7 @@
   height: 27px;
   padding: 1px 5px;
   font-size: 14px;
+  margin: 0 10px;
 }
 
 .btn{
@@ -61,12 +62,7 @@
   border: 1px solid #f3f1f1;
   border-radius: 3px;
   box-shadow: 1px 1px 1px 1px orange;
-  height: 15px;
-}
-
-.btn:hover{
-  color: brown;
-  box-shadow: 1px 1px 1px 1px yellow;
+  height: 22px;
 }
 
 .btn:active{
@@ -128,3 +124,12 @@
   text-decoration: line-through;
 }
 
+.form-group{
+  position: relative;
+}
+
+.alert-danger{
+  position: absolute;
+  color: red;
+  right: 50px;
+}

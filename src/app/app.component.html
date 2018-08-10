@@ -4,31 +4,45 @@
 
     <h1 class="main-title"> The {{ title }} List </h1>
 
-
-    <br>
-    <br>
-
-    <app-form-control-sample> </app-form-control-sample>
-
-    <br>
-    <br>
-
-    <app-reacteve-form-metanit> </app-reacteve-form-metanit>
-
-    <br>
-    <br>
-
     <div>
-      <input [(ngModel)]="taskText" (keydown.enter)="addFromEnter()"  id="inner-field" placeholder="New task" class="inner-field" type="text" name="text-input">
-      <input [(ngModel)]="deadLine" id="date-line" class="date-field" type="date" name="date-input" >
-      <span (click)="addNewRow($event)"  id="addBtn" class="add-btn btn"> + Add</span>
+      <form [formGroup]="myForm" novalidate (ngSubmit)="submit()">
+
+        <span class="form-group">
+          <label>Task</label>
+          <input class="form-control inner-field" name="task" formControlName="userTask" placeholder="New task" />
+
+          <div class="alert alert-danger"
+               *ngIf="myForm.controls['userTask'].invalid && myForm.controls['userTask'].touched">
+            Не введена задача!
+          </div>
+        </span>
+
+        <span class="form-group">
+          <label>Date</label>
+          <input class="form-control date-field" name="date" type="date" formControlName="userDeadLine" />
+
+          <div class="alert alert-danger"
+               *ngIf="myForm.controls['userDeadLine'].invalid && myForm.controls['userDeadLine'].touched">
+            Не введена дата!
+          </div>
+        </span>
+
+        <span class="form-group">
+          <button class="add-btn btn" [disabled]="myForm.invalid">
+            + Add
+          </button>
+        </span>
+
+      </form>
+
     </div>
 
     <br>
 
     <div id="table-list" class="table-list">
 
-      <app-row-component  class="row-list"  [ngClass]="{readyClass:task.ready}"   (onSaveEdit)="onSaveEdit()" (onChangeReady)="onChangeReady(index)" (onRemoveItem)="onRemoveItem($event)"
+      <app-row-component  class="row-list"  [ngClass]="{readyClass:task.ready}"   (onSaveEdit)="onSaveEdit($event)"
+                          (onChangeReady)="onChangeReady(index)" (onRemoveItem)="onRemoveItem($event)"
                          *ngFor="let task of todoListArr; let index = index"  [task]="task" [index]="index"> loading ...
       </app-row-component>
 

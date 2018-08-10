@@ -1,13 +1,34 @@
   <div class="info-field" (dblclick)="toggleVisibility()">
     <span [ngClass]="{invisible: visibility}" class="date-line"> {{task.deadLine | date}} </span>
-    <input  (keydown.enter)="addFromEnter()" [ngClass]="{invisible: !visibility}" type="date" [(ngModel)]="task.deadLine">
     <span (click)="changeReady()" [ngClass]="{invisible: visibility}" class="text-line"> {{task.text}}  	</span>
-    <input   (keydown.enter)="addFromEnter()" [ngClass]="{invisible: !visibility}" type="text" class="inner-field" [(ngModel)]="task.text" >
+
+    <form  [ngClass]="{invisible: !visibility}" [formGroup]="myForm" novalidate (ngSubmit)="submit()">
+
+      <span class="form-group">
+        <input class="form-control date-field" name="date" type="date" formControlName="userDeadLine" value="{{task.deadLine}}" />
+
+        <div class="alert alert-danger"
+             *ngIf="myForm.controls['userDeadLine'].invalid && myForm.controls['userDeadLine'].touched">
+          Не введена дата!
+        </div>
+      </span>
+
+      <span class="form-group">
+        <input class="form-control inner-field" name="task" formControlName="userTask" placeholder="New task" value="{{task.text}}" />
+
+        <div class="alert alert-danger"
+             *ngIf="myForm.controls['userTask'].invalid && myForm.controls['userTask'].touched">
+          Не введена задача!
+        </div>
+      </span>
+
+    </form>
+
   </div>
 
   <div class="btn-panel">
     <span [ngClass]="{invisible: visibility}" (click)="toggleVisibility()"  class="edit-btn style-btn" title="edit" > </span>
-    <span [ngClass]="{invisible: !visibility}" (click)="validationAndSave()" class="save-btn style-btn " title="save"> </span>
+    <span [ngClass]="{invisible: !visibility}" (click)="submit()" class="save-btn style-btn " title="save"> </span>
     <span (click)="removeItem()" class="remove-btn style-btn" title="remove"> </span>
   </div>
 

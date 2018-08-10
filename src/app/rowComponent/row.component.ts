@@ -1,5 +1,7 @@
 import {Input, Component, Output, EventEmitter} from '@angular/core';
 import {ToDoItem} from '../ToDoItem';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {emptyStingValidator} from '../Custom.validator';
 
 @Component({
   selector: 'app-row-component',
@@ -11,6 +13,19 @@ export class RowComponent {
   @Input() index: number;
 
   visibility = false;
+  myForm: FormGroup;
+  constructor(private formBuilder: FormBuilder) {   // тут реализовано создание формы через FormBuilder
+    this.myForm = formBuilder.group({
+      'userTask': ['', [Validators.required, emptyStingValidator]],
+      'userDeadLine': ['',  Validators.required ]
+    });
+  }
+  submit() {
+    console.log(this.myForm);
+    this.toggleVisibility();
+    this.saveEdit();
+    // this.myForm.controls['userTask'].reset();
+  }
   @Output () onChangeReady = new EventEmitter<number>();
   changeReady() {
     this.onChangeReady.emit(this.index);
@@ -19,25 +34,14 @@ export class RowComponent {
   removeItem() {
     this.onRemoveItem.emit(this.index);
   }
-  @Output () onSaveEdit = new EventEmitter<void>();
+  @Output () onSaveEdit = new EventEmitter<any>();
   saveEdit() {
-    this.onSaveEdit.emit();
-  }
-  addFromEnter() {
-      this.validationAndSave();
-  }
-  validationAndSave() {
-    if (!this.task.text || this.task.text.trim() === ''  ||  this.task.deadLine === '') {
-      return;
-    }
-      this.saveEdit();
-      this.toggleVisibility();
+    console.log({index: this.index, text: this.myForm.controls['userTask'].value});
+    this.onSaveEdit.emit({index: this.index, text: this.myForm.controls['userTask'].value});
   }
   toggleVisibility() {
     this.visibility = !this.visibility;
   }
-  // onKeyup(data) {
-  //   this.task.text = data;
-  // }
+
 }
 
