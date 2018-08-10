@@ -36,5 +36,8 @@ export class RowComponent {
   toggleVisibility() {
     this.visibility = !this.visibility;
   }
+  // onKeyup(data) {
+  //   this.task.text = data;
+  // }
 }
 
