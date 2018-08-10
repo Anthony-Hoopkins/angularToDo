@@ -53,6 +53,7 @@
 
 :host .save-btn{
   background-position: 247px 931px;
+  height: 25px;
 }
 
 :host .save-btn:hover{
@@ -65,4 +66,20 @@
 
 :host:nth-child(odd) .save-btn:hover{
   background-position: 247px 111px;
+}
+
+
+.form-group{
+  position: relative;
+}
+
+.alert-danger{
+  position: absolute;
+  color: red;
+  right: 50px;
+}
+
+.save-btn{
+  border: none;
+  box-shadow: none;
 }

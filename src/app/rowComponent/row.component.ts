@@ -22,9 +22,8 @@ export class RowComponent {
   }
   submit() {
     console.log(this.myForm);
-    this.toggleVisibility();
     this.saveEdit();
-    // this.myForm.controls['userTask'].reset();
+    this.toggleVisibility();
   }
   @Output () onChangeReady = new EventEmitter<number>();
   changeReady() {
@@ -36,8 +35,8 @@ export class RowComponent {
   }
   @Output () onSaveEdit = new EventEmitter<any>();
   saveEdit() {
-    console.log({index: this.index, text: this.myForm.controls['userTask'].value});
-    this.onSaveEdit.emit({index: this.index, text: this.myForm.controls['userTask'].value});
+    console.log({index: this.index, text: this.myForm.controls ['userTask'].value, deadLine: this.myForm.controls['userDeadLine'].value});
+    this.onSaveEdit.emit({index: this.index, text: this.myForm.controls['userTask'].value, deadLine: this.myForm.controls['userDeadLine'].value});
   }
   toggleVisibility() {
     this.visibility = !this.visibility;

@@ -22,13 +22,18 @@
         </div>
       </span>
 
+      <!--<span [ngClass]="{invisible: !visibility}" (click)="submit()" class="save-btn style-btn " title="save"> </span>-->
+
     </form>
 
   </div>
 
   <div class="btn-panel">
+
+
+    <button [ngClass]="{invisible: !visibility}" class="save-btn style-btn " title="save" (click)="submit()" [disabled]="myForm.invalid">  </button>
     <span [ngClass]="{invisible: visibility}" (click)="toggleVisibility()"  class="edit-btn style-btn" title="edit" > </span>
-    <span [ngClass]="{invisible: !visibility}" (click)="submit()" class="save-btn style-btn " title="save"> </span>
+
     <span (click)="removeItem()" class="remove-btn style-btn" title="remove"> </span>
   </div>
 

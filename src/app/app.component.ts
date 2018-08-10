@@ -10,6 +10,7 @@ const todoStorage = 'todoStorage';
 interface IndexTask {
   index: number;
   text: string;
+  deadLine: string;
 }
 
 @Component({
@@ -35,6 +36,7 @@ export class AppComponent {
   }
   onSaveEdit(obj: IndexTask) {
     this.todoListArr[obj.index].text = obj.text;
+    this.todoListArr[obj.index].deadLine = obj.deadLine;
     localStorage.setItem(todoStorage, JSON.stringify(this.todoListArr));
   }
   onChangeReady(index: number) {
