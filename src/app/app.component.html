@@ -8,23 +8,31 @@
       <form [formGroup]="myForm" novalidate (ngSubmit)="submit()">
 
         <span class="form-group">
-          <label>Task</label>
+          <label >Task</label>
           <input class="form-control inner-field" name="task" formControlName="userTask" placeholder="New task" />
 
-          <div class="alert alert-danger"
-               *ngIf="myForm.controls['userTask'].invalid && myForm.controls['userTask'].touched">
-            Не введена задача!
+          <div appMyValid class="alert alert-danger"
+               *ngIf="formErrors.userTask">
+            {{formErrors.userTask}}
           </div>
+
         </span>
 
         <span class="form-group">
           <label>Date</label>
-          <input class="form-control date-field" name="date" type="date" formControlName="userDeadLine" />
+          <input  class="form-control date-field" name="date" type="date" formControlName="userDeadLine" title="date" />
 
-          <div class="alert alert-danger"
-               *ngIf="myForm.controls['userDeadLine'].invalid && myForm.controls['userDeadLine'].touched">
-            Не введена дата!
+           <div appMyValid class="alert alert-danger"
+                *ngIf="formErrors.userDeadLine && 'focus'">
+              <div class="triangle"> tg </div>
+            {{formErrors.userDeadLine}}
           </div>
+
+          <!--<div class="alert alert-danger"-->
+               <!--*ngIf="myForm.controls['userDeadLine'].invalid && myForm.controls['userDeadLine'].touched">-->
+            <!--Не введена дата!-->
+          <!--</div>-->
+
         </span>
 
         <span class="form-group">

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { FormGroup,  Validators, FormBuilder} from '@angular/forms';
 import {ToDoItem} from './ToDoItem';
 import {emptyStingValidator} from './Custom.validator';
@@ -18,15 +18,35 @@ interface IndexTask {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'angularToDo';
   todoListArr: ToDoItem[] = JSON.parse(localStorage.getItem(todoStorage)) || [];
   myForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) {   // тут реализовано создание формы через FormBuilder
-    this.myForm = formBuilder.group({
-      'userTask': ['', [Validators.required, emptyStingValidator]],
+  constructor(private formBuilder: FormBuilder) { }  // тут реализовано создание формы через FormBuilder
+  //
+  formErrors = {
+    'userTask': '',
+    'userDeadLine': ''
+  };
+  validationMessages = {
+    'userTask': {
+      'required': 'Обязательное поле. ',
+      'minlength': 'Мин 5 символов в описании задачи. ',
+      'emptyStingValidator': 'Нельзя использовать только пробелы. ',
+    },
+    'userDeadLine': {
+      'required': 'Обязательное на_й поле. ',
+      'chezana' : 'chezana '
+    }
+  };
+  ngOnInit() {
+    this.myForm = this.formBuilder.group({
+      'userTask': ['', [Validators.required, Validators.minLength(5), emptyStingValidator]],
       'userDeadLine': [currentDate,  Validators.required ]
     });
+    this.myForm.valueChanges.subscribe(data => this.onValueChange(data));
+
+    this.onValueChange();
   }
   submit() {
     this.todoListArr.unshift({text: this.myForm.controls['userTask'].value, ready: false,  deadLine:  this.myForm.controls['userDeadLine'].value});
@@ -45,5 +65,27 @@ export class AppComponent {
   onRemoveItem(index: number) {
     this.todoListArr.splice(index, 1);
     localStorage.setItem(todoStorage, JSON.stringify(this.todoListArr));
+  }
+  onValueChange(data?: any) {
+    if (!this.myForm) {
+      console.log('Форма еще не инициализирована!');
+      return;
+    }
+    const form = this.myForm;
+    for (const field in this.formErrors) {
+      this.formErrors[field] = '';
+      // form.get - получение элемента управления
+      const control = form.get(field);
+      console.log(control);
+
+      if (control && control.dirty && !control.valid) {
+        const message = this.validationMessages[field];
+        console.log(message);
+        for (const key in control.errors) {
+          this.formErrors[field] += message[key] + '';
+         // console.log(this.formErrors[field] += message[key] + '');
+        }
+      }
+    }
   }
 }
