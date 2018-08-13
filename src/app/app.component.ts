@@ -29,7 +29,6 @@ export class AppComponent {
     });
   }
   submit() {
-    console.log(this.myForm);
     this.todoListArr.unshift({text: this.myForm.controls['userTask'].value, ready: false,  deadLine:  this.myForm.controls['userDeadLine'].value});
     localStorage.setItem(todoStorage, JSON.stringify(this.todoListArr));
     this.myForm.controls['userTask'].reset();

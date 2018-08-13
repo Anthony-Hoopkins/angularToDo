@@ -2,10 +2,10 @@
     <span [ngClass]="{invisible: visibility}" class="date-line"> {{task.deadLine | date}} </span>
     <span (click)="changeReady()" [ngClass]="{invisible: visibility}" class="text-line"> {{task.text}}  	</span>
 
-    <form  [ngClass]="{invisible: !visibility}" [formGroup]="myForm" novalidate (ngSubmit)="submit()">
+    <form  (keydown.esc)="toggleVisibility()" [ngClass]="{invisible: !visibility}" [formGroup]="myForm" novalidate (ngSubmit)="submit()">
 
       <span class="form-group">
-        <input class="form-control date-field" name="date" type="date" formControlName="userDeadLine" value="{{task.deadLine}}" />
+        <input class="form-control date-field" name="date" type="date" formControlName="userDeadLine" value="{{task.deadLine}}" title="date"/>
 
         <div class="alert alert-danger"
              *ngIf="myForm.controls['userDeadLine'].invalid && myForm.controls['userDeadLine'].touched">
@@ -22,14 +22,11 @@
         </div>
       </span>
 
-      <!--<span [ngClass]="{invisible: !visibility}" (click)="submit()" class="save-btn style-btn " title="save"> </span>-->
-
     </form>
 
   </div>
 
   <div class="btn-panel">
-
 
     <button [ngClass]="{invisible: !visibility}" class="save-btn style-btn " title="save" (click)="submit()" [disabled]="myForm.invalid">  </button>
     <span [ngClass]="{invisible: visibility}" (click)="toggleVisibility()"  class="edit-btn style-btn" title="edit" > </span>

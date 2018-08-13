@@ -1,4 +1,4 @@
-import {Input, Component, Output, EventEmitter} from '@angular/core';
+import {Input, Component, Output, EventEmitter, OnInit} from '@angular/core';
 import {ToDoItem} from '../ToDoItem';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {emptyStingValidator} from '../Custom.validator';
@@ -8,20 +8,17 @@ import {emptyStingValidator} from '../Custom.validator';
   templateUrl: `./row.component.html`,
   styleUrls: [`./row.css`]
 })
-export class RowComponent {
+export class RowComponent implements OnInit {
   @Input() task: ToDoItem;
   @Input() index: number;
-
   visibility = false;
   myForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) {   // тут реализовано создание формы через FormBuilder
-    this.myForm = formBuilder.group({
-      'userTask': ['', [Validators.required, emptyStingValidator]],
-      'userDeadLine': ['',  Validators.required ]
-    });
+  //
+  constructor (private formBuilder: FormBuilder) {}
+  ngOnInit() {
+    this.initForm();
   }
   submit() {
-    console.log(this.myForm);
     this.saveEdit();
     this.toggleVisibility();
   }
@@ -35,12 +32,17 @@ export class RowComponent {
   }
   @Output () onSaveEdit = new EventEmitter<any>();
   saveEdit() {
-    console.log({index: this.index, text: this.myForm.controls ['userTask'].value, deadLine: this.myForm.controls['userDeadLine'].value});
     this.onSaveEdit.emit({index: this.index, text: this.myForm.controls['userTask'].value, deadLine: this.myForm.controls['userDeadLine'].value});
   }
   toggleVisibility() {
     this.visibility = !this.visibility;
   }
-
+  private initForm() {
+      this.myForm = this.formBuilder.group({
+        'userTask': [this.task.text, [Validators.required, emptyStingValidator]],
+        'userDeadLine': [this.task.deadLine,  Validators.required ]
+      });
+  }
 }
+
 
