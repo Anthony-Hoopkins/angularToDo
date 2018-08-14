@@ -4,11 +4,12 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent} from './app.component';
 import { RowComponent} from './rowComponent/row.component';
-import {ValidateDirective} from './validate.directive';
+import {ChangeStyleDirective} from './changeStyle.directive';
+import {MyValidDirective} from './myValid.directive';
 
 @NgModule({
   declarations: [
-    AppComponent,  RowComponent, ValidateDirective
+    AppComponent,  RowComponent, ChangeStyleDirective, MyValidDirective
   ],
   imports: [
     BrowserModule,  FormsModule, ReactiveFormsModule

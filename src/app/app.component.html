@@ -1,63 +1,72 @@
 <main class="main-class">
 
-  <section id="todo-section" class="todo-section">
+<section id="todo-section" class="todo-section">
 
-    <h1 class="main-title"> The {{ title }} List </h1>
+  <h1 class="main-title"> The {{ title }} List </h1>
 
-    <div>
-      <form [formGroup]="myForm" novalidate (ngSubmit)="submit()">
+  <div>
+    <form [formGroup]="myForm" novalidate (ngSubmit)="submit()">
 
-        <span class="form-group">
+        <div class="form-group inline">
+
           <label >Task</label>
-          <input class="form-control inner-field" name="task" formControlName="userTask" placeholder="New task" />
+          <input appChangeStyle class="form-control inner-field" name="task" formControlName="userTask" placeholder="New task" />
 
-          <div appMyValid class="alert alert-danger"
+          <div  class="alert alert-danger"
                *ngIf="formErrors.userTask">
             {{formErrors.userTask}}
           </div>
 
-        </span>
+        </div>
 
-        <span class="form-group">
+      <div class="form-group inline">
+
           <label>Date</label>
-          <input  class="form-control date-field" name="date" type="date" formControlName="userDeadLine" title="date" />
+          <input *appMyValid="condition" class="form-control date-field" name="date" type="date" formControlName="userDeadLine" title="date" />
 
-           <div appMyValid class="alert alert-danger"
-                *ngIf="formErrors.userDeadLine && 'focus'">
-              <div class="triangle"> tg </div>
+           <div appChangeStyle class="alert alert-danger"
+                *ngIf="formErrors.userDeadLine">
             {{formErrors.userDeadLine}}
           </div>
 
-          <!--<div class="alert alert-danger"-->
-               <!--*ngIf="myForm.controls['userDeadLine'].invalid && myForm.controls['userDeadLine'].touched">-->
-            <!--Не введена дата!-->
-          <!--</div>-->
+        <!--<div class="alert alert-danger"-->
+        <!--*ngIf="myForm.controls['userDeadLine'].invalid && myForm.controls['userDeadLine'].touched">-->
+        <!--Не введена дата!-->
+        <!--</div>-->
 
-        </span>
+        </div>
 
-        <span class="form-group">
+      <span class="form-group">
           <button class="add-btn btn" [disabled]="myForm.invalid">
             + Add
           </button>
         </span>
 
-      </form>
+    </form>
 
-    </div>
+  </div>
 
-    <br>
+  <!--<p *appMyValid="condition">
+    Первый параграф
+  </p>
+  <p *appMyValid="!condition">
+    Второй параграф
+  </p>-->
+  <button (click)="toggle()">Toggle</button>
 
-    <div id="table-list" class="table-list">
+  <br>
 
-      <app-row-component  class="row-list"  [ngClass]="{readyClass:task.ready}"   (onSaveEdit)="onSaveEdit($event)"
-                          (onChangeReady)="onChangeReady(index)" (onRemoveItem)="onRemoveItem($event)"
-                         *ngFor="let task of todoListArr; let index = index"  [task]="task" [index]="index"> loading ...
-      </app-row-component>
+  <div id="table-list" class="table-list">
 
-    </div>
+    <app-row-component  class="row-list"  [ngClass]="{readyClass:task.ready}"   (onSaveEdit)="onSaveEdit($event)"
+                        (onChangeReady)="onChangeReady(index)" (onRemoveItem)="onRemoveItem($event)"
+                        *ngFor="let task of todoListArr; let index = index"  [task]="task" [index]="index"> loading ...
+    </app-row-component>
 
-    <br>
+  </div>
 
-  </section>
+  <br>
+
+</section>
 
 </main>

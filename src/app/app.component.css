@@ -142,23 +142,15 @@
   display: none;
 }
 
-triangle{
-  background-color: #ffd9d2;
-  top: -1px;
-  right: 100px;
-   height: 40px;
-   width: 200px;
-  border-left: 1px solid crimson;
-  border-right: 1px solid crimson;
-}
-/*.alert-danger:after{*/
-  /*content: "Новьё!"; !* Добавляемый текст *!*/
-  /*color: #333; !* Цвет текста *!*/
-  /*background-color: #fc0; !* Цвет фона *!*/
-  /*font-size: 90%; !* Размер шрифта *!*/
-  /*padding: 2px; !* Поля вокруг текста *!*/
-/*}*/
-
 .form-control:focus ~ .alert-danger{
   display: block;
+}
+
+input.ng-touched.ng-invalid{
+  border-color: red;
+  color: red;
+}
+
+.inline{
+  display: inline-block;
 }

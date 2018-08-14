@@ -39,6 +39,10 @@ export class AppComponent implements OnInit {
       'chezana' : 'chezana '
     }
   };
+  condition = true;
+  toggle() {
+    this.condition = !this.condition;
+  }
   ngOnInit() {
     this.myForm = this.formBuilder.group({
       'userTask': ['', [Validators.required, Validators.minLength(5), emptyStingValidator]],
@@ -76,11 +80,9 @@ export class AppComponent implements OnInit {
       this.formErrors[field] = '';
       // form.get - получение элемента управления
       const control = form.get(field);
-      console.log(control);
 
       if (control && control.dirty && !control.valid) {
         const message = this.validationMessages[field];
-        console.log(message);
         for (const key in control.errors) {
           this.formErrors[field] += message[key] + '';
          // console.log(this.formErrors[field] += message[key] + '');
