@@ -146,6 +146,10 @@
   display: block;
 }
 
+.alert-danger.invisible{
+  display: none;
+}
+
 input.ng-touched.ng-invalid{
   border-color: red;
   color: red;
