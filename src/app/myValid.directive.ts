@@ -4,28 +4,33 @@ import {Directive, HostListener, Input, TemplateRef, ViewContainerRef, AfterView
   selector: '[appMyValid]'
 })
 export class MyValidDirective {
-  //
   constructor (/*private templateRef: TemplateRef<any>, private viewContainer: ViewContainerRef,*/ private elementRef: ElementRef, private _renderer: Renderer2 ) { }
 
   @ViewChildren('.alert-danger') _elem: ElementRef;
   alertElement = this._renderer.createElement('div');
-  @Input() set appMyValid(condition: any) {
-    this.initSomthing(condition);
+  @Input() set appMyValid(controlErrors: any) {
+    this.initSomthing(controlErrors);
   }
-  private initSomthing(condition) {
+  validationMessages = {
+      'required': 'Обязательное поле. ',
+      'minlength': 'Мин 5 символов в описании задачи. ',
+      'emptyStingValidator': 'Нельзя использовать только пробелы. '
+  };
+  private initSomthing(controlErrors) {
     const parent = this.elementRef.nativeElement.parentNode;
-    let valueErrore;
-    console.log(valueErrore);
-      if (condition && !valueErrore) {
-        valueErrore = condition;
-        this.alertElement.classList.add('alert-danger');
-        this.alertElement.innerHTML = valueErrore;
-        this._renderer.appendChild(parent, this.alertElement);
-      } else if (condition && valueErrore) {
-        this.alertElement.innerHTML = condition;
-      } else if (this.alertElement) {
-        this.alertElement.innerHTML = '';
-        this.alertElement.classList.remove('alert-danger');
-      }
+    console.log(controlErrors);
+    let valueError = '';
+    if (controlErrors && !valueError) {
+      valueError = '';
+      Object.keys(controlErrors).forEach(val => {
+        valueError += this.validationMessages[val];
+      });
+      this.alertElement.classList.add('alert-danger');
+      this.alertElement.innerHTML = valueError;
+      this._renderer.appendChild(parent, this.alertElement);
+    } else if (this.alertElement) {
+      this.alertElement.innerHTML = '';
+      this.alertElement.classList.remove('alert-danger');
+    }
   }
 }

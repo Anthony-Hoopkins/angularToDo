@@ -1,5 +1,5 @@
-import {Component, OnInit, AfterViewChecked, Output} from '@angular/core';
-import { FormGroup,  Validators, FormBuilder} from '@angular/forms';
+import {Component, OnInit, Output} from '@angular/core';
+import {FormGroup,  Validators, FormBuilder, FormControl} from '@angular/forms';
 import {ToDoItem} from './ToDoItem';
 import {emptyStingValidator} from './Custom.validator';
 
@@ -18,7 +18,7 @@ interface IndexTask {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, AfterViewChecked {
+export class AppComponent implements OnInit {
   title = 'angularToDo';
   todoListArr: ToDoItem[] = JSON.parse(localStorage.getItem(todoStorage)) || [];
   public myForm: FormGroup;
@@ -28,17 +28,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
     'userTask': '',
     'userDeadLine': ''
   };
-  validationMessages = {
-    'userTask': {
-      'required': 'Обязательное поле. ',
-      'minlength': 'Мин 5 символов в описании задачи. ',
-      'emptyStingValidator': 'Нельзя использовать только пробелы. ',
-    },
-    'userDeadLine': {
-      'required': 'Обязательное на_й поле. ',
-      'chezana' : 'chezana '
-    }
-  };
+  controlErrors: any = {};
   onValueChange(data: any) {
     if (!this.myForm) {
       console.log('Форма еще не инициализирована!');
@@ -46,15 +36,11 @@ export class AppComponent implements OnInit, AfterViewChecked {
     }
     const form = this.myForm;
     for (const field in this.formErrors) {
-      this.formErrors[field] = '';
+      this.controlErrors[field] = '';
       // form.get - получение элемента управления
       const control = form.get(field);
-
       if (control && control.dirty && !control.valid) {
-        const message = this.validationMessages[field];
-        for (const key in control.errors) {
-          this.formErrors[field] += message[key] + '';
-        }
+        this.controlErrors[field] = control.errors;
       }
     }
   }
@@ -64,9 +50,6 @@ export class AppComponent implements OnInit, AfterViewChecked {
       'userDeadLine': [currentDate,  Validators.required ]
     });
     this.myForm.valueChanges.subscribe(data => this.onValueChange(data));
-  }
-  ngAfterViewChecked() {
-    console.log('ng After View Checked');
   }
   submit() {
     this.todoListArr.unshift({text: this.myForm.controls['userTask'].value, ready: false,  deadLine:  this.myForm.controls['userDeadLine'].value});

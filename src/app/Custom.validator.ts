@@ -1,17 +1,20 @@
-import { AbstractControl } from '@angular/forms';
+import {AbstractControl, FormControl} from '@angular/forms';
 
-export function emptyStingValidator(control: AbstractControl): { [key: string]: any } {
+export function emptyStingValidator(control: FormControl) {
 
-  const emailRegex = /\S/i;
+  const strRegex = /\S/i;
   const value = control.value;
 
-  const result = emailRegex.test(value);
+  const result = strRegex.test(value);
 
   if (result) {
     return null;
   } else {
     return {
-      'emptyStingValidator': { value }
+      'emptyStingValidator': {
+        valid: false,
+        errorMessage: 'Message from Custom ValiDATOR'
+      }
     };
   }
 }

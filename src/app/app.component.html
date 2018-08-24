@@ -10,7 +10,7 @@
       <div class="form-group inline">
 
           <label >Task</label>
-          <input [appMyValid]="formErrors.userTask" class="form-control inner-field" name="task" formControlName="userTask" placeholder="New task" />
+          <input [appMyValid]="controlErrors.userTask" class="form-control inner-field" name="task" formControlName="userTask" placeholder="New task" />
 
           <!--<div  class="alert alert-danger"-->
                <!--*ngIf="formErrors.userTask">-->
@@ -22,7 +22,7 @@
       <div class="form-group inline">
 
           <label>Date</label>
-          <input [appMyValid]="formErrors.userDeadLine" class="form-control date-field" name="date" type="date" formControlName="userDeadLine" title="date" />
+          <input [appMyValid]="controlErrors.userDeadLine" class="form-control date-field" name="date" type="date" formControlName="userDeadLine" title="date" />
 
            <!--<div appChangeStyle class="alert alert-danger"-->
                 <!--*ngIf="formErrors.userDeadLine">-->
