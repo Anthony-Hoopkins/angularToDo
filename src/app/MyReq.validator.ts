@@ -7,7 +7,7 @@ export function myRequired(control: FormControl) {
     return {
       'required': {
         valid: false,
-        errorMessage: 'Обязательное поле!'
+        errorMessage: ' Обязательное поле! '
       }
     };
   }

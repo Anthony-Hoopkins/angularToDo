@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
     this.myForm = this.formBuilder.group({
-      'userTask': ['', [myRequired, Validators.minLength(5), emptyStingValidator/*, myMinLen(8)*/]],
+      'userTask': ['', [myRequired, /* Validators.minLength(5),*/ emptyStingValidator, myMinLen(4)]],
       'userDeadLine': [currentDate,  myRequired ]
     });
     this.myForm.valueChanges.subscribe(data => this.onValueChange(data));

@@ -1,17 +1,18 @@
-import {FormControl} from '@angular/forms';
+import {FormControl, ValidatorFn} from '@angular/forms';
 
-export function myMinLen(min: number, control?: FormControl) {
-  console.log(min);
-  if (control.value.length > 8) {
-    return null;
-  } else {
-    return {
-      'required': {
-        valid: false,
-        errorMessage: 'Min leng'
-      }
-    };
-  }
+export function myMinLen(min: number): ValidatorFn {
+  return (control: FormControl): {[key: string]: any} | null => {
+    if (control.value.length > min) {
+      return null;
+    } else {
+      return {
+        'myMinLength': {
+          valid: false,
+          requiredLength: min,
+          actualLength: control.value.length,
+          errorMessage: ` Мин ${min} символов в описании задачи. `
+        }
+      };
+    }
+  };
 }
-
-

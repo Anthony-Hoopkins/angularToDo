@@ -17,7 +17,7 @@ export class MyValidDirective {
     if (controlErrors && !valueError) {
       valueError = '';
       Object.keys(controlErrors).forEach(val => {
-        valueError += val === 'minlength' ? `Мин ${controlErrors[val].requiredLength} символов в описании задачи. ` : '  ' + controlErrors[val].errorMessage;
+        valueError += ' ' + controlErrors[val].errorMessage;
       });
       this.alertElement.classList.add('alert-danger');
       this.alertElement.innerHTML = valueError;
