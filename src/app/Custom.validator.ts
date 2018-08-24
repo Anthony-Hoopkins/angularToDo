@@ -1,7 +1,6 @@
-import {AbstractControl, FormControl} from '@angular/forms';
+import {FormControl} from '@angular/forms';
 
 export function emptyStingValidator(control: FormControl) {
-
   const strRegex = /\S/i;
   const value = control.value;
 
@@ -9,14 +8,12 @@ export function emptyStingValidator(control: FormControl) {
 
   if (result) {
     return null;
-  } else {
-    return {
-      'emptyStingValidator': {
-        valid: false,
-        errorMessage: ' Нельзя использовать только пробелы! '
-      }
-    };
   }
+  return {
+    emptyStingValidator: {
+      errorMessage: ' Нельзя использовать только пробелы! '
+    }
+  };
 }
 
 

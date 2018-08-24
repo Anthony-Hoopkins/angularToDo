@@ -1,5 +1,5 @@
-import {Component, OnInit, Output} from '@angular/core';
-import {FormGroup,  Validators, FormBuilder, FormControl} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormGroup, FormBuilder} from '@angular/forms';
 import {ToDoItem} from './ToDoItem';
 import {emptyStingValidator} from './Custom.validator';
 import {myRequired} from './MyReq.validator';
@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
     this.myForm = this.formBuilder.group({
-      'userTask': ['', [myRequired, /* Validators.minLength(5),*/ emptyStingValidator, myMinLen(4)]],
+      'userTask': ['', [myRequired, emptyStingValidator, myMinLen(4)]],
       'userDeadLine': [currentDate,  myRequired ]
     });
     this.myForm.valueChanges.subscribe(data => this.onValueChange(data));

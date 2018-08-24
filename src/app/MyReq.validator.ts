@@ -1,16 +1,14 @@
 import {FormControl} from '@angular/forms';
 
 export function myRequired(control: FormControl) {
-  if (control.value) {
+  if (control && control.value) {
     return null;
-  } else {
-    return {
-      'required': {
-        valid: false,
-        errorMessage: ' Обязательное поле! '
-      }
-    };
   }
+  return {
+    required: {
+      errorMessage: ' Обязательное поле! '
+    }
+  };
 }
 
 
