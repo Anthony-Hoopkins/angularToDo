@@ -2,6 +2,8 @@ import {Component, OnInit, Output} from '@angular/core';
 import {FormGroup,  Validators, FormBuilder, FormControl} from '@angular/forms';
 import {ToDoItem} from './ToDoItem';
 import {emptyStingValidator} from './Custom.validator';
+import {myRequired} from './MyReq.validator';
+import {myMinLen} from './myMinLen.validator';
 
 const dateForInp = new Date();
 const currentDate = `${dateForInp.getFullYear()}-${dateForInp.getMonth() + 1 < 10 ? '0' + (dateForInp.getMonth() + 1) :  dateForInp.getMonth() + 1}-${dateForInp.getDate() < 10 ? '0' + (dateForInp.getDate()) :  dateForInp.getDate()}`;
@@ -46,8 +48,8 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
     this.myForm = this.formBuilder.group({
-      'userTask': ['', [Validators.required, Validators.minLength(5), emptyStingValidator]],
-      'userDeadLine': [currentDate,  Validators.required ]
+      'userTask': ['', [myRequired, Validators.minLength(5), emptyStingValidator/*, myMinLen(8)*/]],
+      'userDeadLine': [currentDate,  myRequired ]
     });
     this.myForm.valueChanges.subscribe(data => this.onValueChange(data));
   }

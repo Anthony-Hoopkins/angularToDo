@@ -13,7 +13,7 @@ export function emptyStingValidator(control: FormControl) {
     return {
       'emptyStingValidator': {
         valid: false,
-        errorMessage: 'Message from Custom ValiDATOR'
+        errorMessage: ' Нельзя использовать только пробелы!'
       }
     };
   }
