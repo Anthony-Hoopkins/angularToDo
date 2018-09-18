@@ -12,12 +12,27 @@
           <label >Task</label>
           <input [appMyValid]="controlErrors.userTask" class="form-control inner-field" name="task" formControlName="userTask" placeholder="New task" />
 
+          <!--<div  class="alert alert-danger"-->
+               <!--*ngIf="formErrors.userTask">-->
+            <!--{{formErrors.userTask}}-->
+          <!--</div>-->
+
       </div>
 
       <div class="form-group inline">
 
           <label>Date</label>
           <input [appMyValid]="controlErrors.userDeadLine" class="form-control date-field" name="date" type="date" formControlName="userDeadLine" title="date" />
+
+           <!--<div appChangeStyle class="alert alert-danger"-->
+                <!--*ngIf="formErrors.userDeadLine">-->
+            <!--{{formErrors.userDeadLine}}-->
+          <!--</div>-->
+
+        <!--<div class="alert alert-danger"-->
+        <!--*ngIf="myForm.controls['userDeadLine'].invalid && myForm.controls['userDeadLine'].touched">-->
+        <!--Не введена дата!-->
+        <!--</div>-->
 
       </div>
 

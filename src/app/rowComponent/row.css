@@ -16,7 +16,7 @@
   padding: 3px 15px 4px;
   height: 15px;
   width: 15px;
-  background: url('/src/img/Full_sprite.png');
+  background: url('../../assets/img/Full_sprite.png');
 }
 
 :host .edit-btn{
